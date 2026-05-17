@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Providers } from "@/lib/providers";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -33,9 +34,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}>
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
+  <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}>
+    <body>
+      <Providers>
+        {children}
+      </Providers>
+    </body>
+  </html>
+</ClerkProvider>
   );
 }
